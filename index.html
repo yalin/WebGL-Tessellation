@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Tessellation & Twisting</title>
+  <script id="vertex-shader" type="x-shader/x-vertex">
+  attribute vec4 vPosition;
+  uniform float angle;
+  varying vec4 fColor;
+
+  void main()
+  {
+    fColor = vec4((1.0+vPosition)/2.0);
+    gl_Position = vPosition;
+  }
+  </script>
+  <script id="fragment-shader" type="x-shader/x-fragment">
+  precision mediump float;
+
+  varying vec4 fColor;
+
+  void
+  main(){
+    gl_FragColor = fColor;
+  }
+  </script>
+  <script type="text/javascript" src="Common/webgl-utils.js"></script>
+  <script type="text/javascript" src="Common/initShaders.js"></script>
+  <script type="text/javascript" src="Common/MV.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <script type="text/javascript" src="js/main.js"></script>
+  <style>
+    .center-pills {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="jumbotron">
+        <h3>Computer Graphics [WebGL] - Tessellation</h3>
+        <ul class="nav nav-pills">
+          <li role="presentation "><button type="button" class="btn btn-primary" onclick="firstPart()">Question
+              1</button></li>
+          <li role="presentation"><button type="button" class="btn btn-primary" onclick="secondPart()">Question
+              2</button></li>
+          <li role="presentation"><button type="button" class="btn btn-primary" onclick="thirdPart()">Question
+              3</button></li>
+          <li role="presentation"><button type="button" class="btn btn-primary" onclick="fourthPart()">Question
+              4</button></li>
+          <li role="presentation"><button type="button" class="btn btn-primary" onclick="fifthPart()">Question
+              5</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <p>
+        <div class="col-md-6 col-md-offset-3 mb-5" id="polygonOptions">
+          <div class="text-center">
+            <ul class="nav nav-pills center-pills">
+              <li role="presentation "><button type="button" class="btn btn-warning" onclick="square()">Square</button>
+              </li>
+              <li role="presentation"><button type="button" class="btn btn-success"
+                  onclick="pentagon()">Pentagon</button></li>
+              <li role="presentation"><button type="button" class="btn btn-info" onclick="hexagon()">Hexagon</button>
+              </li>
+              <li role="presentation"><button type="button" class="btn btn-danger" onclick="octagon()">Octagon</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <br><br>
+      </p>
+      <canvas id="gl-canvas" class="center-block" width="300" height="300">
+        Oops ... your browser doesn't support the HTML5 canvas element
+      </canvas>
+      <div class="row center-block">
+        <div class="col-md-6 col-md-offset-3">
+          <h3 class="text-center">Tessellation</h3>
+          <div class="checkbox text-center">
+            <label>
+              <input type="checkbox" data-toggle="toggle" id="tessellated" onclick="tessellatedChecked()">
+            </label>
+          </div>
+        </div>
+        <br />
+        <div class="col-md-6 col-md-offset-3" id="rotationSet">
+          <h3 class="text-center">Rotation Angle</h3>
+          <input id="rotationAngle" name="angle" type="range" min="-180" max="180" step="1" value="0" />
+          <output id="rotationAngleOutput" type="text">0</output>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <br />
+</body>
+
+</html>
